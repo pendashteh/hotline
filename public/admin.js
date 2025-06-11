@@ -1,5 +1,5 @@
-async function dial() {
-  await fetch('/dial', { method: 'POST' });
+async function answer() {
+  await fetch('/answer', { method: 'POST' });
   poll();
 }
 
@@ -13,3 +13,5 @@ async function poll() {
   document.getElementById('status').textContent = `Status: ${status}`;
   if (status !== 'idle') setTimeout(poll, 2000);
 }
+
+poll();

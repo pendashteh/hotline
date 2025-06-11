@@ -1,18 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Virtual Phone</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+<html>
+<head><title>Call Queue</title></head>
 <body>
-  <h1>📞 Virtual Phone</h1>
-  <p id="status">Status: ...</p>
-  <div class="buttons">
-    <button id="dialBtn">📲 Dial</button>
-    <button id="answerBtn">✅ Answer</button>
-    <button id="endBtn">❌ End</button>
-  </div>
+  <h1>Welcome! Click to Dial</h1>
+  <button onclick="dial()">Dial</button>
+  <button onclick="end()">End</button>
+  <p id="status"></p>
   <script src="script.js"></script>
 </body>
 </html>

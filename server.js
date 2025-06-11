@@ -1,35 +1,42 @@
 const express = require('express');
-const cors = require('cors');
 const path = require('path');
-
 const app = express();
-app.use(cors());
-app.use(express.json());
+const port = process.env.PORT || 3000;
 
-let callState = { status: 'idle' };
+let state = { status: 'idle' };
 
-// API Routes
-app.get('/status', (req, res) => {
-  res.json(callState);
-});
-
-app.post('/status', (req, res) => {
-  const { status } = req.body;
-  if (!status) return res.status(400).json({ error: 'Missing status' });
-  callState.status = status;
-  res.json({ success: true, status });
-});
-
-// Serve frontend
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Fallback to index.html (for SPA support if needed)
+// API routes
+app.get('/status', (req, res) => {
+  res.json(state);
+});
+
+app.post('/dial', (req, res) => {
+  state.status = 'dialing';
+  res.json({ ok: true });
+});
+
+app.post('/end', (req, res) => {
+  state.status = 'idle';
+  res.json({ ok: true });
+});
+
+app.post('/answer', (req, res) => {
+  state.status = 'in-call';
+  res.json({ ok: true });
+});
+
+// Route-specific HTML
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/admin.html'));
+});
+
+// Optional catch-all to visitor interface
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
-// Start server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`App running at http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`Virtual Phone Queue running on http://localhost:${port}`);
 });
