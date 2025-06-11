@@ -1,4 +1,4 @@
-const baseUrl = 'https://your-render-service.onrender.com'; // REPLACE with your Render URL
+const baseUrl = ''; // same-origin
 
 const statusEl = document.getElementById('status');
 const dialBtn = document.getElementById('dialBtn');
@@ -32,5 +32,5 @@ dialBtn.onclick = () => setStatus('dialing');
 answerBtn.onclick = () => setStatus('connected');
 endBtn.onclick = () => setStatus('ended');
 
-setInterval(updateStatus, 3000); // Poll every 3 sec
-updateStatus(); // Initial fetch
+setInterval(updateStatus, 3000);
+updateStatus();

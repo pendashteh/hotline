@@ -1,5 +1,5 @@
 {
-  "name": "virtual-phone-backend",
+  "name": "virtual-phone-app",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
